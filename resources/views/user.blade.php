@@ -35,7 +35,7 @@
             <tbody>
                 @foreach ($users as $item)
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $loop->index + $users->firstItem() }}</td>
                         <td>{{ $item->username }}</td>
                         <td>
                             @if ($item->phone)
@@ -53,5 +53,7 @@
             </tbody>
         </table>
     </div>
+
+    {{ $users->withQueryString()->links() }}
 
 @endsection

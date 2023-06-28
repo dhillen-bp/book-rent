@@ -21,4 +21,7 @@
         <x-rent-log-table :rentlog='$rent_logs' />
     </div>
 
+    <div class="my-5">
+        {{ $rent_logs->withQueryString()->links() }}
+    </div>
 @endsection

@@ -37,7 +37,7 @@
             <tbody>
                 @foreach ($books as $item)
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $loop->iteration + $books->firstItem() - 1 }}</td>
                         <td>{{ $item->book_code }}</td>
                         <td>{{ $item->title }}</td>
                         <td>
@@ -56,4 +56,7 @@
         </table>
     </div>
 
+    <div class="my-5">
+        {{ $books->withQueryString()->links() }}
+    </div>
 @endsection

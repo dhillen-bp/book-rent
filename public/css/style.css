@@ -2,6 +2,10 @@
     height: 100vh;
 }
 
+.nav-item {
+    padding: auto !important;
+}
+
 .nav-link:hover {
     color: #0D6EFD;
     font-weight: bold;

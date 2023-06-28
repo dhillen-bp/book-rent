@@ -34,11 +34,13 @@
                             @if (Auth::User()->role_id === 1)
                                 <li class="nav-item mb-3">
                                     <a href="/dashboard"
-                                        class="nav-link @if (request()->route()->uri == 'dashboard') active @endif">Dashboard</a>
+                                        class="nav-link @if (request()->route()->uri == 'dashboard') active @endif"><i
+                                            class="bi bi-house-door-fill"></i> Dashboard</a>
                                 </li>
                                 <li class="nav-item mb-3">
                                     <a href="/books"
-                                        class="nav-link @if (in_array(request()->route()->uri, ['books', 'book-add', 'book-deleted', 'book-edit/{slug}', 'book-delete/{slug}'])) active @endif">Books</a>
+                                        class="nav-link @if (in_array(request()->route()->uri, ['books', 'book-add', 'book-deleted', 'book-edit/{slug}', 'book-delete/{slug}'])) active @endif"><i
+                                            class="bi bi-book-fill"></i> Books</a>
                                 </li>
                                 <li class="nav-item mb-3">
                                     <a href="/categories"
@@ -46,7 +48,8 @@
                                                 request()->route()->uri == 'category-add' ||
                                                 request()->route()->uri == 'category-deleted' ||
                                                 request()->route()->uri == 'category-edit/{slug}' ||
-                                                request()->route()->uri == 'category-delete/{slug}') active @endif">Categories</a>
+                                                request()->route()->uri == 'category-delete/{slug}') active @endif"><i
+                                            class="bi bi-tags-fill"></i> Categories</a>
                                 </li>
                                 <li class="nav-item mb-3">
                                     <a href="/users"
@@ -56,36 +59,43 @@
                                                 'user-approve/{slug}',
                                                 'user-ban/{slug}',
                                                 'user-deleted',
-                                            ])) active @endif">Users</a>
+                                            ])) active @endif"><i
+                                            class="bi bi-people-fill"></i> Users</a>
                                 </li>
                                 <li class="nav-item mb-3">
                                     <a href="/rent-logs"
-                                        class="nav-link @if (request()->route()->uri == 'rent-logs') active @endif">Rent Log</a>
+                                        class="nav-link @if (request()->route()->uri == 'rent-logs') active @endif"><i
+                                            class="bi bi-journal-bookmark-fill"></i> Rent Log</a>
                                 </li>
                                 <li class="nav-item mb-3">
                                     <a href="/book-rent"
-                                        class="nav-link @if (request()->route()->uri == 'book-rent') active @endif">Book Rent</a>
+                                        class="nav-link @if (request()->route()->uri == 'book-rent') active @endif"><i
+                                            class="bi bi-journal-check"></i> Book Rent</a>
                                 </li>
                                 <li class="nav-item mb-3">
                                     <a href="/book-return"
-                                        class="nav-link @if (request()->route()->uri == 'book-return') active @endif">Book Return</a>
+                                        class="nav-link @if (request()->route()->uri == 'book-return') active @endif"><i
+                                            class="bi bi-journal-x"></i> Book Return</a>
                                 </li>
                             @else
                                 <li class="nav-item mb-3">
                                     <a href="/profile"
-                                        class="nav-link @if (request()->route()->uri == 'profile') active @endif">Profile</a>
+                                        class="nav-link @if (request()->route()->uri == 'profile') active @endif"><i
+                                            class="bi bi-person-fill"></i> Profile</a>
                                 </li>
                                 <li class="nav-item mb-3">
                                     <a href="/"
-                                        class="nav-link @if (request()->route()->uri == '/') active @endif">Book List</a>
+                                        class="nav-link @if (request()->route()->uri == '/') active @endif"><i
+                                            class="bi bi-journals"></i> Book List</a>
                                 </li>
                             @endif
                             <li class="nav-item">
-                                <a href="/logout" class="nav-link">Logout</a>
+                                <a href="/logout" class="nav-link my-auto"><i class="bi bi-door-closed-fill"></i>
+                                    Logout</a>
                             </li>
                         @else
                             <li class="nav-item">
-                                <a href="/login" class="nav-link">Login</a>
+                                <a href="/login" class="nav-link"><i class="bi bi-door-open-fill"></i> Login</a>
                             </li>
                         @endif
                     </ul>

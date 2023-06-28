@@ -34,7 +34,7 @@
             <tbody>
                 @foreach ($categories as $item)
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $loop->index + $categories->firstItem() }}</td>
                         <td>{{ $item->name }}</td>
                         <td>
                             <a href="category-edit/{{ $item->slug }}" class="btn btn-warning me-2">Edit</a>
@@ -46,4 +46,5 @@
         </table>
     </div>
 
+    {{ $categories->withQueryString()->links() }}
 @endsection

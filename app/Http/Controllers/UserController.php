@@ -18,7 +18,7 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = User::where('role_id', 2)->where('status', 'active')->get();
+        $users = User::where('role_id', 2)->where('status', 'active')->paginate(10);
         return view('user', ['users' => $users]);
     }
 
