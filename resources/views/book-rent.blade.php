@@ -9,6 +9,8 @@
     <div class="my-5 col-12 col-md-8 offset-md-2 col-lg-6 offset-md-3">
         <h1 class="mb-3">Book Rent Form</h1>
 
+        <p class="mb-3">See detailed <a href="/" class="text-decoration-none">Book List</a></p>
+
         @if (session('message'))
             <div class="alert {{ session('alert-class') }} mt-5">
                 {{ session('message') }}

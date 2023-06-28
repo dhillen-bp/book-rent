@@ -44,24 +44,7 @@
         {{-- Rent Log --}}
         <div class="mt-5">
             <h2>#Rent Log</h2>
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>User</th>
-                        <th>Book Title</th>
-                        <th>Rent Date</th>
-                        <th>Return Date</th>
-                        <th>Actual Return Date</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td colspan="7" class="text-center">No Data</td>
-                    </tr>
-                </tbody>
-            </table>
+            <x-rent-log-table :rentlog='$rent_logs' />
         </div>
     </div>
 

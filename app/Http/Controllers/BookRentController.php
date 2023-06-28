@@ -14,7 +14,10 @@ class BookRentController extends Controller
 {
     public function index()
     {
-        $users = User::where('role_id', '!=', 1)->get();
+        $users = User::where([
+            ['role_id', '!=', 1],
+            ['status', '!=', 'inactive']
+        ])->get();
         $books = Book::all();
         return view('book-rent', ['users' => $users, 'books' => $books]);
     }
