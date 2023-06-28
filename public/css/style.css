@@ -1,0 +1,42 @@
+.main {
+    height: 100vh;
+}
+
+.nav-link:hover {
+    color: #0D6EFD;
+    font-weight: bold;
+}
+
+.nav-link.active {
+    color: #0D6EFD !important;
+}
+
+.card-data{
+    border: 1px solid;
+    padding: 20px 50px;
+    color: white;
+    border-radius: 20px;
+}
+
+.card-data.book{
+    background-color: #0D6EFD;
+}
+
+.card-data.category{
+    background-color: #a50dfd;
+}
+
+.card-data.user{
+    background-color: #fda90d;
+}
+
+.card-data i{
+   font-size: 80px;
+}
+.card-desc{
+    font-size: 30px;
+}
+
+.card-count{
+    font-size: 25px;
+}
