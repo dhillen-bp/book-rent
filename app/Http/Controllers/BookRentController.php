@@ -19,7 +19,7 @@ class BookRentController extends Controller
             ['status', '!=', 'inactive']
         ])->get();
         $books = Book::all();
-        return view('book-rent', ['users' => $users, 'books' => $books]);
+        return view('rent-book', ['users' => $users, 'books' => $books]);
     }
 
     public function store(Request $request)
@@ -62,6 +62,65 @@ class BookRentController extends Controller
                     DB::rollBack();
                 }
             }
+        }
+    }
+
+    public function returnBook()
+    {
+        $users = User::where([
+            ['role_id', '!=', 1],
+            ['status', '!=', 'inactive']
+        ])->get();
+
+        return view('return-book', ['users' => $users]);
+    }
+
+    public function getUserBooks($user_id)
+    {
+        $books = Book::whereHas('rentLogs', function ($query) use ($user_id) {
+            $query->where([
+                ['user_id', $user_id],
+                ['actual_return_date', null]
+            ]);
+        })->get();
+
+        return response()->json($books);
+    }
+
+
+    public function saveReturnBook(Request $request)
+    {
+        $rent = RentLogs::where([
+            ['user_id', $request->user_id],
+            ['book_id', $request->book_id],
+            ['actual_return_date', '=', NULL]
+        ]);
+        $rentData = $rent->first();
+        $countData = $rent->count();
+
+        if ($countData === 1) {
+            try {
+                DB::beginTransaction();
+
+                $rentData->actual_return_date = Carbon::now()->toDateString();
+                $rentData->save();
+
+                $book = Book::findOrFail($request->book_id);
+                $book->status = 'in stock';
+                $book->save();
+
+                DB::commit();
+
+                Session::flash('message', "Book is returned successfully");
+                Session::flash('alert-class', "alert-success");
+                return redirect('book-return');
+            } catch (\Throwable $th) {
+                DB::rollBack();
+            }
+        } else {
+            Session::flash('message', "Error in returning the book!");
+            Session::flash('alert-class', "alert-danger");
+            return redirect('book-return');
         }
     }
 }

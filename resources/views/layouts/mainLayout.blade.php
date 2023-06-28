@@ -66,6 +66,10 @@
                                     <a href="/book-rent"
                                         class="nav-link @if (request()->route()->uri == 'book-rent') active @endif">Book Rent</a>
                                 </li>
+                                <li class="nav-item mb-3">
+                                    <a href="/book-return"
+                                        class="nav-link @if (request()->route()->uri == 'book-return') active @endif">Book Return</a>
+                                </li>
                             @else
                                 <li class="nav-item mb-3">
                                     <a href="/profile"

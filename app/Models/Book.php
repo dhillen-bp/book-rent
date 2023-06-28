@@ -7,6 +7,7 @@ use App\Models\BookCategory;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
@@ -37,5 +38,10 @@ class Book extends Model
     public function bookCategories()
     {
         return $this->hasMany(BookCategory::class);
+    }
+
+    public function rentLogs(): HasMany
+    {
+        return $this->hasMany(RentLogs::class, 'book_id', 'id');
     }
 }
