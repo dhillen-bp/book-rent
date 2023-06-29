@@ -8,9 +8,12 @@ use Illuminate\Support\Facades\Session;
 
 class CategoryController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $categories = Category::paginate(10);
+        $keyword = $request->keyword;
+
+        $categories = Category::where('name', 'LIKE', '%' . $keyword . '%')
+            ->paginate(10);
         return view('category', ['categories' => $categories]);
     }
 

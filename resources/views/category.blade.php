@@ -17,9 +17,21 @@
         @endif
     @endif
 
-    <div class="mt-5 d-flex justify-content-end">
-        <a href="category-add" class="btn btn-primary me-4">Add Data</a>
-        <a href="category-deleted" class="btn btn-info">Show Deleted Data</a>
+    <div class="mt-5 row d-flex justify-content-between">
+        <div class="col-12 col-sm-5 mb-3">
+            <form action="" method="get" class="">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="floatingInputGroup1" name="keyword"
+                        placeholder="Search Keyword">
+                    <button class="input-group-text btn btn-primary">Search</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-12 col-md-auto">
+            <a href="category-add" class="btn btn-primary me-4">Add Data</a>
+            <a href="category-deleted" class="btn btn-info">Show Deleted Data</a>
+        </div>
     </div>
 
     <div class="my-5">

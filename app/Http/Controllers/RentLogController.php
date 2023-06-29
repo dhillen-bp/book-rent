@@ -7,9 +7,18 @@ use Illuminate\Http\Request;
 
 class RentLogController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $rentlogs = RentLogs::with('user', 'book')->paginate(10);
+        $keyword = $request->keyword;
+
+        $rentlogs = RentLogs::with('user', 'book')
+            ->whereHas('book', function ($query) use ($keyword) {
+                $query->where('title', 'LIKE', '%' . $keyword . '%');
+            })
+            ->orWhereHas('user', function ($query) use ($keyword) {
+                $query->where('username', 'LIKE', '%' . $keyword . '%');
+            })
+            ->paginate(10);
         return view('rent_log', ['rent_logs' => $rentlogs]);
     }
 }

@@ -42,9 +42,12 @@
         </div>
 
         {{-- Rent Log --}}
-        <div class="mt-5">
-            <h2>#Rent Log</h2>
+        <div class="my-5">
             <x-rent-log-table :rentlog='$rent_logs' />
+        </div>
+
+        <div class="my-5">
+            {{ $rent_logs->withQueryString()->links() }}
         </div>
     </div>
 

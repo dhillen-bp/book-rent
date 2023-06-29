@@ -10,15 +10,21 @@ use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
-    public function profile(Request $request)
+    public function profile()
     {
         $rentlogs = RentLogs::with('user', 'book')->where('user_id', Auth::user()->id)->get();
         return view('profile', ['rent_logs' => $rentlogs]);
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::where('role_id', 2)->where('status', 'active')->paginate(10);
+        $keyword = $request->keyword;
+
+        $users = User::where('role_id', 2)->where([
+            ['status', 'active'],
+            ['username', 'LIKE', '%' . $keyword . '%']
+        ])
+            ->paginate(10);
         return view('user', ['users' => $users]);
     }
 

@@ -10,9 +10,18 @@ use Illuminate\Support\Facades\Storage;
 
 class BookController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $books = Book::paginate(10);
+        $keyword = $request->keyword;
+
+        $books = Book::with('categories')
+            ->where('book_code', 'LIKE', '%' . $keyword . '%')
+            ->orWhere('title', 'LIKE', '%' . $keyword . '%')
+            ->orWhere('status', 'LIKE', '%' . $keyword . '%')
+            ->orWhereHas('categories', function ($query) use ($keyword) {
+                $query->where('name', 'LIKE', '%' . $keyword . '%');
+            })
+            ->paginate(10);
         return view('book', ['books' => $books]);
     }
 
